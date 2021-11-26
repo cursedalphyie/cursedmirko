@@ -29,7 +29,11 @@ async def main():
                 str += defaultmirko
             str = ''.join([str, lmao[b] ,' '])
 
-        await client.send_message(selgroup, str, schedule=timedelta(seconds=random.randint(3,10)))
+        await client.send_message(
+                await client.get_entity(selgroup),
+                str,
+                schedule=timedelta(minutes=random.randint(1,59))
+                )
 
 if __name__ == "__main__":
     with client:
