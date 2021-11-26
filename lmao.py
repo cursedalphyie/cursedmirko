@@ -1,5 +1,5 @@
 from telethon import TelegramClient
-from unsyncedpieceofsh import API_ID, API_HASH, groups
+from unsyncedpieceofsh import API_ID, API_HASH, groups, NUMBER_OF_MESSAGES, TIMEDELTA_MAX
 from datetime import timedelta
 import random
 
@@ -19,21 +19,23 @@ lmaoL = len(lmao)
 
 
 async def main():
-    for selgroup in groups:
+    for x in range(NUMBER_OF_MESSAGES):
+        for selgroup in groups:
 
-        c = random.randint(3,12)
-        str = ''
-        for a in range(1,c):
-            b = random.randint(0,lmaoL)
-            if a == int(c/2) :
-                str += defaultmirko
-            str = ''.join([str, lmao[b] ,' '])
+            c = random.randint(3,12)
+            str = ''
+            for a in range(1,c):
+                b = random.randint(0,lmaoL)
+                if a == int(c/2) :
+                    str += defaultmirko
+                str = ''.join([str, lmao[b] ,' '])
 
-        await client.send_message(
-                await client.get_entity(selgroup),
-                str,
-                schedule=timedelta(minutes=random.randint(1,59))
-                )
+            group = await client.get_entity(selgroup)
+            await client.send_message(
+                    group,
+                    str,
+                    schedule=timedelta(minutes=random.randint(1,59))
+                    )
 
 if __name__ == "__main__":
     with client:
